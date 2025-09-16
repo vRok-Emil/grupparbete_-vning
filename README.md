@@ -7,8 +7,6 @@
 - **ODM:** Mongoose
 - **API-teknologier:** RESTful API, GraphQL
 
----
-
 ## Uppgift 1: RESTful API
 
 ### Krav
@@ -59,8 +57,6 @@
     - Hämta en lista över alla tillverkare företaget samarbetar med:
       - `GET /api/manufacturers`
 
----
-
 ## Uppgift 2: GraphQL API
 
 ### Krav
@@ -91,8 +87,6 @@
 
 4. **Testa API:et med Apollo Sandbox**
     - Använd Apollo Sandbox för att testa queries och mutationer.
-
----
 
 ## Bonus (ej obligatoriskt)
 
