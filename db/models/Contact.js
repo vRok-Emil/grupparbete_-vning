@@ -1,3 +1,5 @@
+import mongoose,{Schema} from "mongoose";
+
 const contactSchema = new mongoose.Schema(
     {
         name:{
