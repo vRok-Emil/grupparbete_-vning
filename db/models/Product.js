@@ -10,7 +10,7 @@ const productSchema = new mongoose.Schema(
         manufacturer: {type: Schema.Types.ObjectId, ref: 'Manufacturer', required: true},
         amountInStock: {true: Number, required: true}
 	},
-	{ timestamps: true, collection: "tasks" }
+	{ timestamps: true, collection: "products" }
 );
 
 export const Product = mongoose.model("Product", productSchema, "products");
