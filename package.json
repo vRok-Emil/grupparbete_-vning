@@ -9,7 +9,7 @@
     "dev:graph": "nodemon graphIndex.js"
   },
   "repository": {
-    "type": "git",
+    "type": "module",
     "url": "git+https://github.com/vRok-Emil/grupparbete_-vning.git"
   },
   "keywords": [],
