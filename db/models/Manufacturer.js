@@ -9,7 +9,8 @@ const manufacturerSchema = new mongoose.Schema(
 		address: { type: String, required: true },
 		contact: { type: Schema.Types.ObjectId, ref: "Contact", required: true },
 	},
-	{ timestamps: true, collection: "manufacturer" }
+	{ timestamps: true, collection: "manufacturer" },
+  { _id: false }
 );
 
-export const Manufacturer = mongoose.model("Manufacturer", manufacturerSchema);
+export const Manufacturer = mongoose.model("Manufacturer", manufacturerSchema, "manufacturers");
