@@ -1,5 +1,6 @@
 import mongoose,{Schema} from "mongoose";
 
+
 const contactSchema = new mongoose.Schema(
     {
         name:{
@@ -26,4 +27,5 @@ const contactSchema = new mongoose.Schema(
     {_id:false}
 );
 
-export const Contact = mongoose.model('Contact',contactSchema); 
+//export const Contact = mongoose.model('Contact',contactSchema); 
+export default contactSchema
