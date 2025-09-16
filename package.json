@@ -8,8 +8,9 @@
     "dev:rest": "nodemon restIndex.js",
     "dev:graph": "nodemon graphIndex.js"
   },
+  "type": "module",
   "repository": {
-    "type": "module",
+    "type": "git",
     "url": "git+https://github.com/vRok-Emil/grupparbete_-vning.git"
   },
   "keywords": [],

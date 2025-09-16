@@ -1,11 +1,10 @@
 import express from 'express';
-import prodcutCrud from '../controllers/productCrud.js';
+import productCrud from '../controllers/productCrud.js';
 
 const router = express.Router();
 
-router.get("/products", async (req, res) => {
+router.get("/", async (req, res) => {
     try {
-        
         const allProducts = await productCrud.getAllProducts();
         if (!allProducts) {
             return res.status(404).json({message:"No products found"});
@@ -15,9 +14,9 @@ router.get("/products", async (req, res) => {
         return res.status(400).json({message:"Couldn't get all products", error:error.message});
     }
 });
-router.get("/products/:id", async (req, res)=>{
+router.get("/:id", async (req, res)=>{
     try {
-        const product = await productsCrud.getProductById(req.params.id);
+        const product = await productCrud.getProductById(req.params.id);
         if (!product) {
             return res.status(404).json({message:"Product not found"});
         }
@@ -27,20 +26,20 @@ router.get("/products/:id", async (req, res)=>{
     }
 });
 
-router.post("/products", async (req, res)=>{
+router.post("/", async (req, res)=>{
     const {name, sku, description, price, category, manufacturer, amountInStock} = req.body;
     try {
         if (!name || !sku || !price || !category || !manufacturer || !amountInStock) {
             return res.status(400).json({message:"Missing required fields"});
         }
-       const newProduct = await ProductCrud.createproduct({name, sku, description, price, category, manufacturer, amountInStock});
+       const newProduct = await productCrud.createProduct({name, sku, description, price, category, manufacturer, amountInStock});
        return res.status(201).json(newProduct);
     } catch (error) {
         return res.status(400).json({message:"Couldn't create product", error:error.message});
     }
 });
 
-router.put("/products/:id", async (req, res)=>{
+router.put("/:id", async (req, res)=>{
     try {
      const updateProduct = await productCrud.updateProduct(req.params.id, req.body);
      if (!updateProduct) {
@@ -52,7 +51,7 @@ router.put("/products/:id", async (req, res)=>{
     }
 });
 
-router.delete("/products/:id", async (req, res)=>{
+router.delete("/:id", async (req, res)=>{
     try {
         const deleteProduct = await productCrud.deleteProduct(req.params.id);
         if (!deleteProduct) {

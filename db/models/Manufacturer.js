@@ -1,4 +1,5 @@
 import mongoose, { Schema } from "mongoose";
+import { Contact } from "./Contact.js";
 
 const manufacturerSchema = new mongoose.Schema(
 	{
@@ -8,6 +9,7 @@ const manufacturerSchema = new mongoose.Schema(
 		description: { type: String },
 		address: { type: String, required: true },
 		contact: { type: Schema.Types.ObjectId, ref: "Contact", required: true },
+    // contact: { type: Contact, ref: "Contact", required: true },
 	},
 	{ timestamps: true, collection: "manufacturer" },
   { _id: false }

@@ -1,14 +1,16 @@
 import mongoose, { Schema } from "mongoose";
+import { Manufacturer } from "./manufacturer.js";
 
 const productSchema = new mongoose.Schema(
 	{
 		name: { type: String, required: true, trim: true, unique: true },
-	    sku: {type: Number, required: true, unique: true},
+	  sku: {type: Number, required: true, unique: true},
 		description: { type: String },
-        price: {type: Number, required: true},
-        category: {type: String, required: true},
-        manufacturer: {type: Schema.Types.ObjectId, ref: 'Manufacturer', required: true},
-        amountInStock: {true: Number, required: true}
+    price: {type: Number, required: true},
+    category: {type: String, required: true},
+    manufacturer: {type: Schema.Types.ObjectId, ref: 'Manufacturer', required: true},
+		// manufacturer: { type: Manufacturer, ref: 'Manufacturer', required: true },
+    amountInStock: {type: Number, required: true}
 	},
 	{ timestamps: true, collection: "products" }
 );

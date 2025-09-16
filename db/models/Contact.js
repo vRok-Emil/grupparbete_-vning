@@ -4,14 +4,14 @@ const contactSchema = new mongoose.Schema(
     {
         name:{
         type:String,
-        requiered:true,
+        required:true,
         trim:true,
         minlength:2,
         maxlength:100,
         },
         email:{
             type:String,
-            requiered:true,
+            required:true,
             trim:true,
             lowercase:true,
             unique:true,
@@ -22,7 +22,7 @@ const contactSchema = new mongoose.Schema(
             trim:true,
             match:[/^\+?[1-9]\d{1,14}$/,'Please fill a valid phone number']
 }
-    },    
+    },
     {_id:false}
 );
 
