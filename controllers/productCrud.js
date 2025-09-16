@@ -20,10 +20,29 @@ const deleteProduct = async (id) => {
   return await Product.findByIdAndDelete(id);
 }
 
+const getTotalStockValue = async () => {
+    return await Product.aggregate([
+        {
+            $group:{
+                _id: '$manufacturer',
+                amount: {
+                    $sum: "$amountInStock"
+                },
+                maxAmount: {
+                    $max: "$amountInStock"
+                }
+            }
+        }
+    ]);
+} 
+
+
+
 export default {
   getAllProducts,
   getProductById,
   createProduct,
   updateProduct,
-  deleteProduct
+  deleteProduct,
+  getTotalStockValue
 };

@@ -14,6 +14,17 @@ router.get("/", async (req, res) => {
         return res.status(400).json({message:"Couldn't get all products", error:error.message});
     }
 });
+
+router.get("/totalamount", async (req, res) => {
+    try {
+        const totalamount = await productCrud.getTotalStockValue();
+        return res.status(200).json(totalamount)
+    } catch (error) {
+        return res.status(400).json({message:"Couldn't get totalamount", error:error.message});
+    }
+})
+
+
 router.get("/:id", async (req, res)=>{
     try {
         const product = await productCrud.getProductById(req.params.id);
