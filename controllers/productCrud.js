@@ -34,8 +34,17 @@ const getTotalStockValue = async () => {
 const getTotalStockValueByManufacturer = async () => {
   return await Product.aggregate([
     {
+      $lookup: {
+        from: "manufacturers",
+        localField: "manufacturer",
+        foreignField: "_id",
+        as: "manufacturerData",
+      },
+    },
+    { $unwind: "$manufacturerData" },
+    {
       $group: {
-        _id: "$manufacturer.name",
+        _id: "$manufacturerData.name",
         totalStockValue: {
           $sum: { $multiply: ["$amountInStock", "$price"] },
         },
