@@ -1,42 +1,48 @@
-import { Product } from "../db/models/Product.js";
+import { Product } from "../db/models/Product.js"
 
 const getAllProducts = async () => {
-  return await Product.find().populate('manufacturer');
+  return await Product.find()
 }
 
 const getProductById = async (id) => {
-  return await Product.findById(id).populate('manufacturer');
+  return await Product.findById(id)
 }
 
 const createProduct = async (productData) => {
-  return await Product.create(productData);
+  return await Product.create(productData)
 }
 
 const updateProduct = async (id, updateData) => {
-  return await Product.findByIdAndUpdate(id, updateData, { new: true });
+  return await Product.findByIdAndUpdate(id, updateData, { new: true })
 }
 
 const deleteProduct = async (id) => {
-  return await Product.findByIdAndDelete(id);
+  return await Product.findByIdAndDelete(id)
 }
 
 const getTotalStockValue = async () => {
-    return await Product.aggregate([
-        {
-            $group:{
-                _id: '$manufacturer',
-                amount: {
-                    $sum: "$amountInStock"
-                },
-                maxAmount: {
-                    $max: "$amountInStock"
-                }
-            }
-        }
-    ]);
-} 
+  return await Product.aggregate([
+    {
+      $group: {
+        _id: null,
+        totalStockValue: { $sum: { $multiply: ["$amountInStock", "$price"] } },
+      },
+    },
+  ])
+}
 
-
+const getTotalStockValueByManufacturer = async () => {
+  return await Product.aggregate([
+    {
+      $group: {
+        _id: "$manufacturer.name",
+        totalStockValue: {
+          $sum: { $multiply: ["$amountInStock", "$price"] },
+        },
+      },
+    },
+  ])
+}
 
 export default {
   getAllProducts,
@@ -44,5 +50,6 @@ export default {
   createProduct,
   updateProduct,
   deleteProduct,
-  getTotalStockValue
-};
+  getTotalStockValue,
+  getTotalStockValueByManufacturer,
+}

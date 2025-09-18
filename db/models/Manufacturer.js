@@ -1,4 +1,4 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose from "mongoose";
 import contactSchema from "./Contact.js";
 
 const manufacturerSchema = new mongoose.Schema(
@@ -8,13 +8,9 @@ const manufacturerSchema = new mongoose.Schema(
 		website: { type: String },
 		description: { type: String },
 		address: { type: String, required: true },
-		//contact: { type: Schema.Types.ObjectId, ref: "Contact", required: true },
     contact: { type: contactSchema, required: true },
 	},
-	{ timestamps: true, collection: "manufacturer" },
-  { _id: false }
+	{ timestamps: true, collection: "manufacturers" },
 );
 
-
-//export const Manufacturer = mongoose.model("Manufacturer", manufacturerSchema, "manufacturers");
-export default manufacturerSchema;
+export const Manufacturer = mongoose.model("Manufacturer", manufacturerSchema, "manufacturers");

@@ -1,5 +1,4 @@
-import mongoose,{Schema} from "mongoose";
-
+import mongoose from "mongoose";
 
 const contactSchema = new mongoose.Schema(
     {
@@ -27,5 +26,4 @@ const contactSchema = new mongoose.Schema(
     {_id:false}
 );
 
-//export const Contact = mongoose.model('Contact',contactSchema); 
 export default contactSchema
